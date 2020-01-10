@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    
+    <typeAliases>
+        <package name="xyz.codedog.simple.model" />
+    </typeAliases>
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC">
+                <property name="" value=""/>
+            </transactionManager>
+            <dataSource type="UNPOOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
+                <property name="username" value="Zhangzb"/>
+                <property name="password" value="Zhangzb1024"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <mapper resource="xyz/codedog/simple/mapper/CountryMapper.xml"/>
+        <mapper resource="xyz/codedog/simple/mapper/UserMapper.xml"/>
+        <mapper resource="xyz/codedog/simple/mapper/RoleMapper.xml"/>
+        <mapper resource="xyz/codedog/simple/mapper/PrivilegeMapper.xml"/>
+        <mapper resource="xyz/codedog/simple/mapper/UserRoleMapper.xml"/>
+        <mapper resource="xyz/codedog/simple/mapper/RolePrivilegeMapper.xml"/>
+
+        <!--直接通过包来进行配置-->
+        <!--<package name="xyz.codedog.simple.mapper"/>-->
+    </mappers>
+</configuration>
