@@ -15,14 +15,26 @@
         select * from sys_user where id = #{id}
     </select>
 
+    <!--<select id="selectAll" resultType="xyz.codedog.simple.model.SysUser">-->
+        <!--select id,-->
+              <!--user_name userName,-->
+              <!--user_password userPassword,-->
+              <!--user_email userEmail,-->
+              <!--user_info userInfo,-->
+              <!--head_img headImg,-->
+              <!--create_time createTime-->
+        <!--from sys_user-->
+    <!--</select>-->
+
+<!--全局配置中开启驼峰命名-->
     <select id="selectAll" resultType="xyz.codedog.simple.model.SysUser">
         select id,
-              user_name userName,
-              user_password userPassword,
-              user_email userEmail,
-              user_info userInfo,
-              head_img headImg,
-              create_time createTime
+              user_name,
+              user_password,
+              user_email,
+              user_info,
+              head_img,
+              create_time
         from sys_user
     </select>
 </mapper>

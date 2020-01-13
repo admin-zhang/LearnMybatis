@@ -7,18 +7,13 @@
  */
 package xyz.codedog.simple.model;
 
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
 
-public class CountryMapperTest {
+public class CountryMapperTest extends BaseMapperTest{
+/*    抽取到 BaseMapperTest 中
     private static SqlSessionFactory sqlSessionFactory;
 
     @BeforeClass
@@ -31,12 +26,13 @@ public class CountryMapperTest {
             e.printStackTrace();
         }
     }
+    */
 
     @Test
     public void testSelectAll(){
-        SqlSession sqlSession = sqlSessionFactory.openSession();
+        SqlSession sqlSession = getSqlSession();
         try {
-            List<Country> countryList = sqlSession.selectList("selectAll");
+            List<Country> countryList = sqlSession.selectList("xyz.codedog.simple.mapper.CountryMapper.selectAll");
             printCountryList(countryList);
         }finally {
             sqlSession.close();
