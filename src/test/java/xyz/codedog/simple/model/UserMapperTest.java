@@ -50,4 +50,20 @@ public class UserMapperTest extends BaseMapperTest {
             sqlSession.close();
         }
     }
+
+    @Test
+    public void testSelectRolesByUserId(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            //调用selectRolesByUserId方法查询用户的角色
+            List<SysRole> roleList = userMapper.selectRolesByUserId(1L);
+            //结果不为空
+            Assert.assertNotNull(roleList);
+            //角色数量大于0个
+            Assert.assertTrue(roleList.size() > 0);
+        }finally {
+            sqlSession.close();
+        }
+    }
 }

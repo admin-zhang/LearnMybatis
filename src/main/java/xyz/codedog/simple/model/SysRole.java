@@ -18,8 +18,8 @@ public class SysRole {
     private Long enabled;
     private Long createBy;
     private Date createTime;
-
-    private String userName;
+//第一种方法
+   /* private String userName;
 
     public String getUserName() {
         return userName;
@@ -27,7 +27,13 @@ public class SysRole {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
+    }*/
+
+//第二种方法
+    /**
+     * 用户信息
+     */
+   private SysUser user;
 
     public Long getId() {
         return id;
