@@ -37,4 +37,17 @@
               create_time
         from sys_user
     </select>
+
+    <select id="selectRolesByUserId" resultType="xyz.codedog.simple.model.SysRole">
+        select
+            r.id,
+            r.role_name,
+            r.enabled,
+            r.create_by,
+            r.create_time
+        from sys_user u
+        inner join sys_user_role ur on u.id = ur.user_id
+        inner join sys_role r on ur.role_id = r.id
+        where u.id = #{userId}
+    </select>
 </mapper>
