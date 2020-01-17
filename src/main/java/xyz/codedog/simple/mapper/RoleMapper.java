@@ -61,4 +61,17 @@ public interface RoleMapper {
             before = false
     )
     int insert3(SysRole sysRole);
+
+
+    @Update({"update sys_role set",
+            "role_name = #{roleName},",
+            "enabled = #{enabled},",
+            "create_by = #{createBy},",
+            "create_time = #{createTime,jdbcType = TIMESTAMP}",
+            "where id = #{id}"
+    })
+    int updateById(SysRole sysRole);
+
+    @Delete("delete from sys_role where id = #{id}")
+    int deleteById(Long id);
 }
