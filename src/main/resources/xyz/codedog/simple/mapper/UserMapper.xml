@@ -96,6 +96,11 @@
     </insert>
 
     <insert id="insert3">
+       <!-- Oracle
+        <selectKey keyColumn="id" resultType="long" keyProperty="id" order="BEFORE">
+            SELECT SEQ_ID.nextval from dual  -&#45;&#45;ORACLE语句
+        </selectKey>
+        -->
         insert into sys_user(
           id,
           user_name,
@@ -114,6 +119,7 @@
           #{headImg,jdbcType=BLOB},
           #{createTime,jdbcType=TIMESTAMP}
         )
+        /*MySQL*/
         <selectKey keyColumn="id" resultType="long" keyProperty="id" order="AFTER">
 --order属性值,在MySQL数据库中使用AFTER,在ORACLE中使用BEFORE
             SELECT LAST_INSERT_ID() --MySQL语句
