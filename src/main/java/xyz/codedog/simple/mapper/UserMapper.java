@@ -1,5 +1,6 @@
 package xyz.codedog.simple.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import xyz.codedog.simple.model.SysRole;
 import xyz.codedog.simple.model.SysUser;
 
@@ -8,6 +9,7 @@ import java.util.List;
 public interface UserMapper {
     /**
      * 通过id查询用户
+     *
      * @param id
      * @return
      */
@@ -21,6 +23,7 @@ public interface UserMapper {
 
     /**
      * 根据用户 id 查询角色信息
+     *
      * @param userId
      * @return
      */
@@ -28,6 +31,7 @@ public interface UserMapper {
 
     /**
      * 新增用户
+     *
      * @param sysUser
      * @return
      */
@@ -36,6 +40,7 @@ public interface UserMapper {
     /**
      * 新增用户-使用useGeneratedKeys方式
      * 只适用于支持主键自增的数据库
+     *
      * @param sysUser
      * @return
      */
@@ -44,9 +49,37 @@ public interface UserMapper {
     /**
      * 新增用户-使用selectKey方式
      * 既适用于支持主键自增的数据库,也适用于不支持主键自增的数据库
+     *
      * @param sysUser
      * @return
      */
     int insert3(SysUser sysUser);
+
+    /**
+     * 根据主键更新
+     *
+     * @param sysUser
+     * @return
+     */
+    int updateById(SysUser sysUser);
+
+    /**
+     * 通过主键删除
+     *
+     * @param id
+     * @return
+     */
+    int deleteById(Long id);
+
+    int deleteById(SysUser sysUser);
+
+    /**
+     * 根据用户 id 和角色的 enabled 状态获取用户的角色
+     *
+     * @param userId
+     * @param enabled
+     * @return
+     */
+    List<SysRole> selectRolesByUserIdAndRoleEnabled(@Param("userId") Long userId,@Param("enabled") Integer enabled);
 
 }

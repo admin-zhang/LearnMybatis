@@ -127,4 +127,76 @@ public class UserMapperTest extends BaseMapperTest {
             sqlSession.close();
         }
     }
+
+    @Test
+    public void testUpdateById(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            //从数据库查询1个user对象
+            SysUser user = userMapper.selectById(1L);
+            //当前userName为admin
+            Assert.assertEquals("admin",user.getUserName());
+            //修改用户名
+            user.setUserName("admin_test");
+            //修改邮箱
+            user.setUserEmail("admintest@codedog.xyz");
+            //更新数据,特别注意,这里的result是执行的SQL影响的行数
+            int result = userMapper.updateById(user);
+            //只更新1条数据
+            Assert.assertEquals(1,result);
+            //根据当前id查询修改后的数据
+            user = userMapper.selectById(1L);
+            //修改后的名字是admin_test
+            Assert.assertEquals("admin_test",user.getUserName());
+        }finally {
+            sqlSession.rollback();
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void testDeleteById(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+            UserMapper  userMapper = sqlSession.getMapper(UserMapper.class);
+            //从数据库查询1个user对象,根据 id = 1 查询
+            SysUser user1 = userMapper.selectById(1L);
+            //现在还能查询出user对象
+            Assert.assertNotNull(user1);
+            //调用方法删除
+            Assert.assertEquals(1,userMapper.deleteById(1L));
+            //再次查询,这时应该没有值,为null
+            Assert.assertNull(userMapper.selectById(1L));
+
+            //使用SysUser参数再进行一次测试,根据 id = 1001 查询
+            SysUser user2 = userMapper.selectById(1001L);
+            //现在还能查询处user对象
+            Assert.assertNotNull(user2);
+            //调用方法删除
+            Assert.assertEquals(1,userMapper.deleteById(user2));
+            //再次查询,这时应该没有值,为null
+            Assert.assertNull(userMapper.selectById(1001L));
+        }finally {
+            sqlSession.rollback();
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void testSelectRolesByUserIdAndRoleEnabled(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            //调用 selectRolesByUserIdAndRoleEnabled 方法查询用户的角色
+            List<SysRole> userList = userMapper.selectRolesByUserIdAndRoleEnabled(1L,1);
+            //结果不为空
+            Assert.assertNotNull(userList);
+            //角色数量大于0个
+            Assert.assertTrue(userList.size() > 0);
+        }finally {
+            sqlSession.close();
+        }
+    }
+
 }
