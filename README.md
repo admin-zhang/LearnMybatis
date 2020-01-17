@@ -2,13 +2,13 @@
 
 ## 目录
 
-### 一. [环境搭建](#环境搭建) ####
+### 一. [环境搭建](#一、环境搭建) ####
 ### 二. 数据库表的建立 ###
 ### 三. 使用XML方式配置 ###
 
 ---
 
-### 环境搭建 ###
+### 一、环境搭建 ###
 #### 1. 创建maven项目 ####
 ##### 在Intellij IDEA中创建maven项目
 ![maven](https://github.com/admin-zhang/LearnMybatis/raw/master/images/01.png)
