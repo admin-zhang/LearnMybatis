@@ -73,4 +73,52 @@
           #{createTime,jdbcType=TIMESTAMP}
         )
     </insert>
+
+    <insert id="insert2" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_user(
+          id,
+          user_name,
+          user_password,
+          user_email,
+          user_info,
+          head_img,
+          create_time
+          )
+        values (
+          #{id},
+          #{userName},
+          #{userPassword},
+          #{userEmail},
+          #{userInfo},
+          #{headImg,jdbcType=BLOB},
+          #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <insert id="insert3">
+        insert into sys_user(
+          id,
+          user_name,
+          user_password,
+          user_email,
+          user_info,
+          head_img,
+          create_time
+          )
+        values (
+          #{id},
+          #{userName},
+          #{userPassword},
+          #{userEmail},
+          #{userInfo},
+          #{headImg,jdbcType=BLOB},
+          #{createTime,jdbcType=TIMESTAMP}
+        )
+        <selectKey keyColumn="id" resultType="long" keyProperty="id" order="AFTER">
+--order属性值,在MySQL数据库中使用AFTER,在ORACLE中使用BEFORE
+            SELECT LAST_INSERT_ID() --MySQL语句
+          --SELECT SEQ_ID.nextval from dual  ---ORACLE语句
+        </selectKey>
+    </insert>
+
 </mapper>

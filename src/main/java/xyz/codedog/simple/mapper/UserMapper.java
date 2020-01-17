@@ -32,4 +32,21 @@ public interface UserMapper {
      * @return
      */
     int insert(SysUser sysUser);
+
+    /**
+     * 新增用户-使用useGeneratedKeys方式
+     * 只适用于支持主键自增的数据库
+     * @param sysUser
+     * @return
+     */
+    int insert2(SysUser sysUser);
+
+    /**
+     * 新增用户-使用selectKey方式
+     * 既适用于支持主键自增的数据库,也适用于不支持主键自增的数据库
+     * @param sysUser
+     * @return
+     */
+    int insert3(SysUser sysUser);
+
 }
