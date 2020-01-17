@@ -1,5 +1,22 @@
-# LearnMybatis
-《Mybatis从入门到精通》源码
+# LearnMybatis #
 
-1.BaseMapperTest:基础测试类,所有测试类将继承该类 
-2.设置别名使用"对象名.属性名"
+## 目录
+
+### 一. [环境搭建](#环境搭建) ####
+### 二. 数据库表的建立 ###
+### 三. 使用XML方式配置 ###
+
+---
+
+### 环境搭建 ###
+#### 1. 创建maven项目 ####
+##### 在Intellij IDEA中创建maven项目
+![maven](images/01.png)
+
+![maven](images/02.png)
+
+![maven](images/03.png)
+
+![maven](images/04.png)
+##### 项目创建完成后,我们需要添加一些依赖才能使接下来的工作能够顺利进行.可以通过[maven中心仓库](https://mvnrepository.com/)来查找所需依赖坐标,具体的配置可参考[pom.xml](pom.xml) ####
+#### 2. 
