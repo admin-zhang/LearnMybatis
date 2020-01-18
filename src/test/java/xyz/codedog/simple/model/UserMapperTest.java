@@ -228,4 +228,32 @@ public class UserMapperTest extends BaseMapperTest {
         }
     }
 
+    @Test
+    public  void testUpdateByIdSelective(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            //创建一个新的user对象
+            SysUser user = new SysUser();
+            //更新 id = 1 的用户
+            user.setId(1L);
+            //修改邮箱
+            user.setUserEmail("test@codedog.xyz");
+            //更新邮箱,特别注意,这里的返回值result执行的时SQL影响的行数
+            int result = userMapper.updateByIdSelective(user);
+            //只更新一条数据
+            Assert.assertEquals(1,result);
+            //根据当前id查询修改后的数据
+            user = userMapper.selectById(1L);
+            //修改后的名字保持不变,但是邮箱变成了新的
+            Assert.assertEquals("admin",user.getUserName());
+            Assert.assertEquals("test@codedog.xyz",user.getUserEmail());
+        }finally {
+            sqlSession.rollback();
+            sqlSession.close();
+        }
+    }
+
+
+
 }
