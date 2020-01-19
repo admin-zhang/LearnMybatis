@@ -10,6 +10,7 @@
 #### 1.1 在WHERE条件中使用if ####
 > xyz.codedog.simple.mapper.UserMapper.selectByUser(SysUser sysUser);
 ```SQL
+# xyz/codedog/simple/mapper/UserMapper.xml
     <select id="selectByUser" resultType="xyz.codedog.simple.model.SysUser">
         select id,
               user_name userName,
@@ -33,6 +34,7 @@
 #### 1.2 在UPDATE更新列中使用if ####
 > xyz.codedog.simple.mapper.UserMapper.updateByIdSelective(SysUser sysUser);
 ```SQL
+# xyz/codedog/simple/mapper/UserMapper.xml
    <update id="updateByIdSelective">
         update sys_user
         set
@@ -70,6 +72,7 @@ ALTER TABLE `sys_user` MODIFY COLUMN `user_email` VARCHAR ( 50 ) DEFAULT 'test@c
 ```
 > 插入SQL语句如下
 ```SQL
+# xyz/codedog/simple/mapper/UserMapper.xml
    <insert id="insert4" useGeneratedKeys="true" keyProperty="id">
         insert into sys_user(
         user_name,
