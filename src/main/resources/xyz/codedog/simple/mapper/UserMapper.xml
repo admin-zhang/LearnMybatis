@@ -221,5 +221,30 @@
         )
     </insert>
 
+    <select id="selectByIdOrUserName" resultType="xyz.codedog.simple.model.SysUser">
+        SELECT
+            id,
+            user_name,
+            user_password,
+            user_email,
+            user_info,
+            head_img,
+            create_time
+        FROM
+            sys_user
+        WHERE
+            1 = 1
+        <choose>
+            <when test="id != null">
+                and id = #{id}
+            </when>
+            <when test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </when>
+            <otherwise>
+                and 1 = 2
+            </otherwise>
+        </choose>
+    </select>
 
 </mapper>

@@ -82,6 +82,10 @@ public interface UserMapper {
      */
     List<SysRole> selectRolesByUserIdAndRoleEnabled(@Param("userId") Long userId,@Param("enabled") Integer enabled);
 
+/* ====== 动态SQL语句 =====*/
+
+  /* ============================================= if 的用法 =============================================*/
+
     /**
      * 根据动态条件查询用户信息
      *
@@ -106,4 +110,13 @@ public interface UserMapper {
      */
     int insert4(SysUser sysUser);
 
+    /* =========================================== choose 的用法 ===========================================*/
+
+    /**
+     * 根据用户 id 或用户名查询
+     *
+     * @param sysUser
+     * @return
+     */
+    SysUser selectByIdOrUserName(SysUser sysUser);
 }
