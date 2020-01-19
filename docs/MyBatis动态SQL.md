@@ -8,7 +8,7 @@
 
 ### 1. if用法 ###
 #### 1.1 在WHERE条件中使用if ####
-> [xyz.codedog.simple.mapper.UserMapper](https://github.com/admin-zhang/LearnMybatis/tree/master/src/main/java/xyz/codedog/simple/mapper/UserMapper).selectByUser(SysUser sysUser);
+> [xyz.codedog.simple.mapper.UserMapper](https://github.com/admin-zhang/LearnMybatis/tree/master/src/main/java/xyz/codedog/simple/mapper/UserMapper.java).selectByUser(SysUser sysUser);
 ```SQL
 # xyz/codedog/simple/mapper/UserMapper.xml
     <select id="selectByUser" resultType="xyz.codedog.simple.model.SysUser">
