@@ -197,4 +197,29 @@
             id = #{id}
         where id = #{id}
     </update>
+
+    <insert id="insert4" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_user(
+        user_name,
+        user_password,
+        <if test="userEmail != null and userEmail != ''">
+            user_email,
+        </if>
+        user_info,
+        head_img,
+        create_time
+        )
+        values (
+        #{userName},
+        #{userPassword},
+        <if test="userEmail != null and userEmail != ''">
+            #{userEmail},
+        </if>
+        #{headImg,jdbcType=BLOB},
+        #{userInfo},
+        #{createTime,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+
 </mapper>

@@ -254,6 +254,27 @@ public class UserMapperTest extends BaseMapperTest {
         }
     }
 
+    @Test
+    public void testInsert4Selective(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            //创建一个 user 对象
+            SysUser user = new SysUser();
+            user.setUserName("test-selective");
+            user.setUserPassword("123456");
+            user.setUserInfo("test-selective info");
+            user.setCreateTime(new Date());
+            //插入数据库
+            userMapper.insert4(user);
+            //获取插入的这条数据
+            user = userMapper.selectById(user.getId());
+            Assert.assertEquals("test@codedog.xyz",user.getUserEmail());
+        }finally {
+//            sqlSession.rollback();
+            sqlSession.close();
+        }
+    }
 
 
 }

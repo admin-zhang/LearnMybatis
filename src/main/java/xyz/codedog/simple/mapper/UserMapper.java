@@ -98,4 +98,12 @@ public interface UserMapper {
      */
     int updateByIdSelective(SysUser sysUser);
 
+    /**
+     * 使用动态语句if
+     *
+     * @param sysUser
+     * @return
+     */
+    int insert4(SysUser sysUser);
+
 }
