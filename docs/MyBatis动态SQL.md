@@ -129,3 +129,34 @@ ALTER TABLE `sys_user` MODIFY COLUMN `user_email` VARCHAR ( 50 ) DEFAULT 'test@c
         </choose>
     </select>
  ```
+### 3. where、set、trim用法 ###
+#### 3.1 where用法 ####
+> [xyz.codedog.simple.mapper.UserMapper](https://github.com/admin-zhang/LearnMybatis/tree/master/src/main/java/xyz/codedog/simple/mapper/UserMapper.java).selectByUser1(SysUser sysUser);
+
+> `if`条件不满足的时候,where元素中没有内容,即在SQL中不会出现where
+
+```SQL
+    <select id="selectByUser1" resultType="xyz.codedog.simple.model.SysUser">
+        SELECT
+            id,
+            user_name userName,
+            user_password userPassword,
+            user_email userEmail,
+            user_info userInfo,
+            head_img headImg,
+            create_time createTime
+        FROM
+            sys_user
+            <where>
+                <if test="userName != null and userName != ''">
+                    and user_name like concat('%',#{userName},'%')
+                </if>
+                <if test="userEmail != null and userEmail != ''">
+                    and user_email = #{userEmail}
+                </if>
+            </where>
+    </select>
+```
+
+#### 3.2 set用法 ####
+

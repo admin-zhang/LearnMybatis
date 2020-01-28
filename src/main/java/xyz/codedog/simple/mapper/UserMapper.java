@@ -119,4 +119,12 @@ public interface UserMapper {
      * @return
      */
     SysUser selectByIdOrUserName(SysUser sysUser);
+
+    /**
+     * 使用 where
+     *
+     * @param sysUser
+     * @return
+     */
+    List<SysUser> selectByUser1(SysUser sysUser);
 }
