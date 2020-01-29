@@ -159,4 +159,64 @@ ALTER TABLE `sys_user` MODIFY COLUMN `user_email` VARCHAR ( 50 ) DEFAULT 'test@c
 ```
 
 #### 3.2 set用法 ####
+> [xyz.codedog.simple.mapper.UserMapper](https://github.com/admin-zhang/LearnMybatis/tree/master/src/main/java/xyz/codedog/simple/mapper/UserMapper.java).updateByIdSelective1(SysUser sysUser)
+```SQL
+    <update id="updateByIdSelective1">
+        update sys_user
+        <set>
+            <if test="userName != null and userName !=''">
+                user_name = #{userName},
+            </if>
+            <if test="userPassword != null and userPassword != ''">
+                user_password = #{userPassword},
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                user_email = #{userEmail},
+            </if>
+            <if test="userInfo != null and userInfo != ''">
+                user_info = #{userInfo},
+            </if>
+            <if test="headImg != null">
+                head_img = #{headImg,jdbcType=BLOB},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            id = #{id},
+        </set>
+        where id = #{id}
+    </update>
+```
+
+### 4. foreach用法 ###
+#### 4.1 in 集合 ####
+> [xyz.codedog.simple.mapper.UserMapper](https://github.com/admin-zhang/LearnMybatis/tree/master/src/main/java/xyz/codedog/simple/mapper/UserMapper.java).selectByIdList(List<Long> idList);
+##### foreach属性 #####
+* collection:必填,值为要迭代循环的属性名
+* item:变量名,值为从迭代对象中取出的每一个值
+* index:索引的属性名,集合数组时为当前索引值;Map类型时,值为Map的key
+* open:整个循环内容开头的字符串
+* cloase:整个循环内容结尾的字符串
+* separator:每次循环的分隔符
+```SQL
+    <select id="selectByIdList" resultType="xyz.codedog.simple.model.SysUser">
+        SELECT
+            id,
+            user_name userName,
+            user_password userPassword,
+            user_email userEmail,
+            user_info userInfo,
+            head_img headImg,
+            create_time createTime
+        FROM
+            sys_user
+        WHERE id in 
+        <foreach collection="list" open="(" close=")" separator="," item="id" index="i">
+            #{id}
+        </foreach>
+    </select>
+```
+
+
+
 

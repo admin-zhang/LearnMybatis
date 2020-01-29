@@ -12,6 +12,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import xyz.codedog.simple.mapper.UserMapper;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -327,6 +328,21 @@ public class UserMapperTest extends BaseMapperTest {
             userList = userMapper.selectByUser1(query);
             //由于没有同时符合这两个条件的用户,因此查询结果为0
             Assert.assertTrue(userList.size() == 0);
+        }finally {
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void testSelectByIdList(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            List<Long> idList = new ArrayList<>();
+            idList.add(1L);
+            idList.add(1001L);
+            List<SysUser> userList = userMapper.selectByIdList(idList);
+            Assert.assertEquals(2,userList.size());
         }finally {
             sqlSession.close();
         }

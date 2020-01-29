@@ -127,4 +127,32 @@ public interface UserMapper {
      * @return
      */
     List<SysUser> selectByUser1(SysUser sysUser);
+
+    /**
+     * set用法
+     *
+     * @param sysUser
+     * @return
+     */
+    int updateByIdSelective1(SysUser sysUser);
+
+    /**
+     * 根据用户 id 集合查询
+     *List参数
+     *
+     * @param idList
+     * @return
+     */
+    List<SysUser> selectByIdList(List<Long> idList);
+
+    /**
+     * 根据用户 id 集合查询
+     * 数组参数
+     *
+     * @param idArray
+     * @return
+     */
+    List<SysUser> selectByIdArray(List<Long> idArray);
+
+
 }
