@@ -216,6 +216,31 @@ ALTER TABLE `sys_user` MODIFY COLUMN `user_email` VARCHAR ( 50 ) DEFAULT 'test@c
         </foreach>
     </select>
 ```
+#### 4.2 foreach实现批量插入 ####
+> 批量插入语法如下
+```SQL
+INSERT INTO tablename (column-a,[column-b,...])
+VALUES ('value-1a',['value-1b',...]),
+        ('value-2a',['value-2b',...]),
+        ...
+```
+
+> [xyz.codedog.simple.mapper.UserMapper](https://github.com/admin-zhang/LearnMybatis/tree/master/src/main/java/xyz/codedog/simple/mapper/UserMapper.java).selectByIdList(List<Long> idList);
+```SQL
+    <insert id="insertList">
+        insert into sys_user(
+        user_name,user_password,user_email,user_info,head_img,create_time
+        )values 
+        <foreach collection="list" item="user" separator=",">
+            (
+            #{user.userName},#{user.userPassword},#{user.userEmail},
+            #{user.userInfo},#{user.headImg,jdbcType=BLOB},
+            #{user.createTime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+```
+#### 4.3 foreach实现动态UPDATE ####
 
 
 

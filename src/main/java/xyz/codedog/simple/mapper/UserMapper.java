@@ -154,5 +154,13 @@ public interface UserMapper {
      */
     List<SysUser> selectByIdArray(List<Long> idArray);
 
+    /**
+     * 批量插入用户信息
+     *
+     * @param userList
+     * @return
+     */
+    int insertList(List<SysUser> userList);
+
 
 }
