@@ -5,6 +5,7 @@ import xyz.codedog.simple.model.SysRole;
 import xyz.codedog.simple.model.SysUser;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
     /**
@@ -161,6 +162,14 @@ public interface UserMapper {
      * @return
      */
     int insertList(List<SysUser> userList);
+
+    /**
+     * 通过Map更新列
+     *
+     * @param map
+     * @return
+     */
+    int updateByMap(Map<String,Object> map);
 
 
 }

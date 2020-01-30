@@ -323,4 +323,13 @@
             )
         </foreach>
     </insert>
+
+    <update id="updateByMap">
+        update sys_user
+        set
+        <foreach collection="_parameter" item="val" index="key" separator=",">
+            ${key} = #{val}
+        </foreach>
+        where id = #{id}
+    </update>
 </mapper>

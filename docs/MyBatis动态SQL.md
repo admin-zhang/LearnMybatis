@@ -241,6 +241,18 @@ VALUES ('value-1a',['value-1b',...]),
     </insert>
 ```
 #### 4.3 foreach实现动态UPDATE ####
+> [xyz.codedog.simple.mapper.UserMapper](https://github.com/admin-zhang/LearnMybatis/tree/master/src/main/java/xyz/codedog/simple/mapper/UserMapper.java).updateByMap(Map<String,Object> map);
+
+```SQL
+    <update id="updateByMap">
+        update sys_user
+        set 
+        <foreach collection="_parameter" item="val" index="key" separator=",">
+            ${key} = #{val}
+        </foreach>
+        where id = #{id}
+    </update>
+```
 
 
 

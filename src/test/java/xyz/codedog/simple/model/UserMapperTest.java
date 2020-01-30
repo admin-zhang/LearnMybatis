@@ -12,9 +12,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import xyz.codedog.simple.mapper.UserMapper;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class UserMapperTest extends BaseMapperTest {
     @Test
@@ -368,5 +366,28 @@ public class UserMapperTest extends BaseMapperTest {
             sqlSession.close();
         }
     }
+
+    @Test
+    public void testUpdateByMap(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+            UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+            Map<String, Object> map = new HashMap<>();
+            //查询条件,同样也是更新字段
+            map.put("id",1L);
+            //要更新的其他字段
+            map.put("user_email","test@163.com");
+            map.put("user_password","12345678");
+            //更新数据
+            userMapper.updateByMap(map);
+            //根据当前id查询修改后的数据
+            SysUser user = userMapper.selectById(1L);
+            Assert.assertEquals("test@163.com",user.getUserEmail());
+        }finally {
+            sqlSession.rollback();
+            sqlSession.close();
+        }
+    }
+
 
 }
