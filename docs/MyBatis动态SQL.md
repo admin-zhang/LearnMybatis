@@ -290,7 +290,27 @@ VALUES ('value-1a',['value-1b',...]),
 12. @class@method(args):调用类的静态方法
 13. @class@field: 调用类的静态字段值
 
->如表达式12通常用于简化一些校验,或者进行更特殊的校验.
+> 如表达式12通常用于简化一些校验,或者进行更特殊的校验.
+```SQL
+<if test="@xyz.codedog.util.StringUtil@isNotEmpty(userName)">
+  and user_name like concat('%',#{userName},'%')
+</if>
+```
+> 其中StringUtil类如下
+
+```JAVA 
+package xyz.codedog.util;
+
+public class StringUtil {
+    public static boolean isEmpty(String str){
+        return str == null || str.length() == 0;
+    }
+    
+    public static boolean isNotEmpty(String str){
+        return !isEmpty(str);
+    }
+}
+```
 
 
 
