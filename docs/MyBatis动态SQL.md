@@ -253,7 +253,44 @@ VALUES ('value-1a',['value-1b',...]),
         where id = #{id}
     </update>
 ```
+### 5. bind用法 ###
+> 对使用like查询条件进行修改,如 UserMapper.xml中的selectByUser方法,其修改后代码如下:
+```SQL
+<if test="userName != null and userName != ''">
+    <bind name = "userNameLike" value="'%' + userName  + '%'"/>
+    and user_name like #{userNameLIke}
+</if>
+```
+### 6. 多数据库支持 ###
+> 只需要在[mybatis-config.xml](https://github.com/admin-zhang/LearnMybatis/tree/master/src/main/resources/mybatis-config.xml)文件中加入`databaseIdProvider`配置即可
+```SQL
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="SQL Server" value="sqlserver"/>
+        <property name="DB2" value="db2"/>  
+        <property name="Oracle" value="oracle" />
+        <property name="MySQL" value="mysql" />
+        <property name="PostgreSQL" value="postgresql" />
+        <property name="Derby" value="derby" />
+        <property name="HSQL" value="hsqldb" />
+        <property name="H2" value="h2" />
+    </databaseIdProvider>
+```
+### 7. OGNL用法 ###
+1. e1 or e2
+2. e1 and e2
+3. e1 == e2 或 e1 eq e2
+4. e1 != e2 或 e1 neq e2
+5. e1 lt e2 : 小于
+6. e1 lte e2:小于等于,其他表示为gt(大于),gte(大于等于)
+7. e1 + e2 , e1 * e2 . e1/e2 , e1 - e2 , e1%e2
+8. !e 或 not e:非,取反
+9. e.method(args):调用对象方法
+10. e.property:对象属性值
+11. e1[ e2 ]:按索引取值(List,数组和Map) 
+12. @class@method(args):调用类的静态方法
+13. @class@field: 调用类的静态字段值
 
+>如表达式12通常用于简化一些校验,或者进行更特殊的校验.
 
 
 
