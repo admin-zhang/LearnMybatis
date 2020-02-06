@@ -45,7 +45,7 @@
 </generatorConfiguration>
 ```
 # 2. 运行MyBatis Generator #
-## 2.1 使用Java编写代码运行 ##
+## 2.1 使用Java编写代码运行 [推荐]##
 > [xyz.codedog.generator.Generator.java](https://github.com/admin-zhang/LearnMybatis/blob/master/src/main/java/xyz/codedog/generator/Generator.java)
 
 ```java
