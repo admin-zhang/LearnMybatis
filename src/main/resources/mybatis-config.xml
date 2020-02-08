@@ -45,7 +45,7 @@
         <mapper resource="xyz/codedog/simple/mapper/PrivilegeMapper.xml"/>
         <mapper resource="xyz/codedog/simple/mapper/UserRoleMapper.xml"/>
         <mapper resource="xyz/codedog/simple/mapper/RolePrivilegeMapper.xml"/>
-        <mapper resource="example/xml/CountryMapper.xml" />
+        <!--<mapper resource="example/xml/CountryMapper.xml" />-->
 
         <!--直接通过包来进行配置-->
         <!--<package name="xyz.codedog.simple.mapper"/>-->
