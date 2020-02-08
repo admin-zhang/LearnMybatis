@@ -11,6 +11,7 @@ import example.dao.CountryMapper;
 import example.model.Country;
 import example.model.CountryExample;
 import org.apache.ibatis.session.SqlSession;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.List;
@@ -77,7 +78,22 @@ public class ExampleTest extends BaseMapperTest {
 
     @Test
     public void testDeleteByExample(){
-
+        SqlSession sqlSession = getSqlSession();
+        try {
+            final CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
+            //创建Example对象
+            CountryExample example = new CountryExample();
+            //创建条件,只能有一个createCriteria
+            CountryExample.Criteria criteria = example.createCriteria();
+            //删除所有id > 2 的国家
+            criteria.andIdGreaterThan(2);
+            //执行查询
+            countryMapper.deleteByExample(example);
+            //使用countByExample查询符合条件的数量,因为已经删除,所以这里应该是0
+            Assert.assertEquals(0,countryMapper.countByExample(example));
+        }finally {
+            sqlSession.close();
+        }
     }
 
 
