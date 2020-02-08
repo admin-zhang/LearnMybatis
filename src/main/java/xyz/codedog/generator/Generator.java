@@ -28,7 +28,9 @@ public class Generator {
         //当生成的代码重复时,覆盖原代码
         boolean overwrite = true;
         //读取MBG配置文件
-        InputStream inputStream = Generator.class.getResourceAsStream("/generator/generatorConfig.xml");
+//        InputStream inputStream = Generator.class.getResourceAsStream("/generator/generatorConfig.xml");
+        InputStream inputStream = Generator.class.getResourceAsStream("/generator/generatorConfig-country.xml");
+
         ConfigurationParser configurationParser = new ConfigurationParser(warnings);
         Configuration configuration = configurationParser.parseConfiguration(inputStream);
         inputStream.close();

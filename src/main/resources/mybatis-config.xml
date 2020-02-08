@@ -10,18 +10,9 @@
     
     <typeAliases>
         <package name="xyz.codedog.simple.model" />
+        <!--<package name="example.model" />-->
     </typeAliases>
 
-    <databaseIdProvider type="DB_VENDOR">
-        <property name="SQL Server" value="sqlserver"/>
-        <property name="DB2" value="db2"/>
-        <property name="Oracle" value="oracle" />
-        <property name="MySQL" value="mysql" />
-        <property name="PostgreSQL" value="postgresql" />
-        <property name="Derby" value="derby" />
-        <property name="HSQL" value="hsqldb" />
-        <property name="H2" value="h2" />
-    </databaseIdProvider>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC">
@@ -36,6 +27,17 @@
         </environment>
     </environments>
 
+    <databaseIdProvider type="DB_VENDOR">
+        <property name="SQL Server" value="sqlserver"/>
+        <property name="DB2" value="db2"/>
+        <property name="Oracle" value="oracle" />
+        <property name="MySQL" value="mysql" />
+        <property name="PostgreSQL" value="postgresql" />
+        <property name="Derby" value="derby" />
+        <property name="HSQL" value="hsqldb" />
+        <property name="H2" value="h2" />
+    </databaseIdProvider>
+
     <mappers>
         <mapper resource="xyz/codedog/simple/mapper/CountryMapper.xml"/>
         <mapper resource="xyz/codedog/simple/mapper/UserMapper.xml"/>
@@ -43,6 +45,7 @@
         <mapper resource="xyz/codedog/simple/mapper/PrivilegeMapper.xml"/>
         <mapper resource="xyz/codedog/simple/mapper/UserRoleMapper.xml"/>
         <mapper resource="xyz/codedog/simple/mapper/RolePrivilegeMapper.xml"/>
+        <mapper resource="example/xml/CountryMapper.xml" />
 
         <!--直接通过包来进行配置-->
         <!--<package name="xyz.codedog.simple.mapper"/>-->

@@ -44,4 +44,7 @@ public class CountryMapperTest extends BaseMapperTest{
             System.out.printf("%-4d%4s%4s\n",country.getId(),country.getCountryname(), country.getCountrycode());
         }
     }
+
+
+
 }
