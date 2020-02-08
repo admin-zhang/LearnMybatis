@@ -49,7 +49,7 @@
 ```
 4. 在`UserMapperTest.java`中编写如下测试代码
 ```java
-  @Test
+    @Test
     public void testSelectUserAndRoleById(){
         SqlSession sqlSession = getSqlSession();
         try {
