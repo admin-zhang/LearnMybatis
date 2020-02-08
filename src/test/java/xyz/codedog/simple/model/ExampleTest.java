@@ -21,9 +21,13 @@ public class ExampleTest extends BaseMapperTest {
         SqlSession sqlSession = getSqlSession();
         try {
             CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
+            //创建Example对象
             CountryExample example = new CountryExample();
+            //设置排序规则
             example.setOrderByClause("id desc,countryname asc");
+            //设置是否distinct去重
             example.setDistinct(true);
+            //创建条件
             CountryExample.Criteria criteria = example.createCriteria();
             //id >= 1
             criteria.andIdGreaterThanOrEqualTo(1);
@@ -38,10 +42,45 @@ public class ExampleTest extends BaseMapperTest {
             //执行查询
             final List<Country> countryList = countryMapper.selectByExample(example);
             for (example.model.Country country : countryList) {
-                System.out.println(country);
+                System.out.println(country.getId() + "," + country.getCountryname() + "." + country.getCountrycode());
             }
         }finally {
             sqlSession.close();
         }
     }
+
+    @Test
+    public void testUpdateByExampleSelective(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+            CountryMapper countryMapper = sqlSession.getMapper(CountryMapper.class);
+            //创建Example对象
+            CountryExample example = new CountryExample();
+            //创建条件,只能有一个createCriteria
+            CountryExample.Criteria criteria = example.createCriteria();
+            //更新所有id > 2 的国家
+            criteria.andIdGreaterThan(2);
+            //创建一个要设置的对象
+            Country country = new Country();
+            //将国家名字设置为China
+            country.setCountryname("China");
+            //执行查询
+            countryMapper.updateByExampleSelective(country,example);
+            final List<Country> countries = countryMapper.selectByExample(example);
+            for (Country country1 : countries) {
+                System.out.println(country1.getId() + "," + country1.getCountryname() + "." + country1.getCountrycode());
+            }
+        }finally{
+            sqlSession.close();
+        }
+    }
+
+    @Test
+    public void testDeleteByExample(){
+
+    }
+
+
+
+
 }
